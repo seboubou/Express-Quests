@@ -3,6 +3,8 @@ const express = require("express");
 
 const app = express();
 
+app.use(express.json());
+
 const port = process.env.APP_PORT ?? 5000;
 
 const welcome = (req, res) => {
@@ -11,13 +13,15 @@ const welcome = (req, res) => {
 
 app.get("/", welcome);
 
-const { getMovies, getMovieById } = require("./movieHandlers");
-const { getUsers, getUserById } = require("./userHandlers");
+const { getMovies, getMovieById, postMovie } = require("./movieHandlers");
+const { getUsers, getUserById,createUser } = require("./userHandlers");
 
 app.get("/api/movies", getMovies);
 app.get("/api/movies/:id", getMovieById);
 app.get("/api/users", getUsers);
 app.get("/api/users/:id", getUserById);
+app.post("/api/movies", postMovie);
+app.post("/api/users", createUser);
 
 app.listen(port, (err) => {
   if (err) {
