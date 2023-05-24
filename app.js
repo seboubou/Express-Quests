@@ -13,8 +13,8 @@ const welcome = (req, res) => {
 
 app.get("/", welcome);
 
-const { getMovies, getMovieById, postMovie } = require("./movieHandlers");
-const { getUsers, getUserById,createUser } = require("./userHandlers");
+const { getMovies, getMovieById, postMovie,updateMovie } = require("./movieHandlers");
+const { getUsers, getUserById,createUser,updateUser } = require("./userHandlers");
 
 app.get("/api/movies", getMovies);
 app.get("/api/movies/:id", getMovieById);
@@ -22,6 +22,8 @@ app.get("/api/users", getUsers);
 app.get("/api/users/:id", getUserById);
 app.post("/api/movies", postMovie);
 app.post("/api/users", createUser);
+app.put("/api/movies/:id", updateMovie);
+app.put("/api/users/:id", updateUser);
 
 app.listen(port, (err) => {
   if (err) {
